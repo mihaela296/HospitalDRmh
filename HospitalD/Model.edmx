@@ -1,0 +1,821 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище HospitalDOroganModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="ID_Department" />
+          </Key>
+          <Property Name="ID_Department" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Diagnoses">
+          <Key>
+            <PropertyRef Name="ID_Diagnosis" />
+          </Key>
+          <Property Name="ID_Diagnosis" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID_Department" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalProcedures">
+          <Key>
+            <PropertyRef Name="ID_Procedure" />
+          </Key>
+          <Property Name="ID_Procedure" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID_Staff" Type="int" Nullable="false" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medications">
+          <Key>
+            <PropertyRef Name="ID_Medication" />
+          </Key>
+          <Property Name="ID_Medication" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DailyDosage" Type="int" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientDiagnoses">
+          <Key>
+            <PropertyRef Name="ID_PatientDiagnosis" />
+          </Key>
+          <Property Name="ID_PatientDiagnosis" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Patient" Type="int" Nullable="false" />
+          <Property Name="ID_Diagnosis" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientMedications">
+          <Key>
+            <PropertyRef Name="ID_PatientMedication" />
+          </Key>
+          <Property Name="ID_PatientMedication" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Patient" Type="int" Nullable="false" />
+          <Property Name="ID_Medication" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientProcedures">
+          <Key>
+            <PropertyRef Name="ID_PatientProcedure" />
+          </Key>
+          <Property Name="ID_PatientProcedure" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Patient" Type="int" Nullable="false" />
+          <Property Name="ID_Procedure" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="ID_Patient" />
+          </Key>
+          <Property Name="ID_Patient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID_Department" Type="int" Nullable="false" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="Gender" Type="char" MaxLength="1" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="AdmissionDate" Type="date" Nullable="false" />
+          <Property Name="DischargeDate" Type="date" />
+          <Property Name="ID_Role" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="ID_Position" />
+          </Key>
+          <Property Name="ID_Position" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Salary" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID_Staff" />
+          </Key>
+          <Property Name="ID_Staff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID_Department" Type="int" Nullable="false" />
+          <Property Name="ID_Position" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID_Role" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Diagnoses__ID_De__6FE99F9F">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Diagnoses" Type="Self.Diagnoses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID_Department" />
+            </Principal>
+            <Dependent Role="Diagnoses">
+              <PropertyRef Name="ID_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MedicalPr__ID_St__76969D2E">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="MedicalProcedures" Type="Self.MedicalProcedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="MedicalProcedures">
+              <PropertyRef Name="ID_Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientDi__ID_Di__00200768">
+          <End Role="Diagnoses" Type="Self.Diagnoses" Multiplicity="1" />
+          <End Role="PatientDiagnoses" Type="Self.PatientDiagnoses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnoses">
+              <PropertyRef Name="ID_Diagnosis" />
+            </Principal>
+            <Dependent Role="PatientDiagnoses">
+              <PropertyRef Name="ID_Diagnosis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientDi__ID_Pa__7F2BE32F">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="PatientDiagnoses" Type="Self.PatientDiagnoses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="ID_Patient" />
+            </Principal>
+            <Dependent Role="PatientDiagnoses">
+              <PropertyRef Name="ID_Patient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientMe__ID_Me__03F0984C">
+          <End Role="Medications" Type="Self.Medications" Multiplicity="1" />
+          <End Role="PatientMedications" Type="Self.PatientMedications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medications">
+              <PropertyRef Name="ID_Medication" />
+            </Principal>
+            <Dependent Role="PatientMedications">
+              <PropertyRef Name="ID_Medication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientMe__ID_Pa__02FC7413">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="PatientMedications" Type="Self.PatientMedications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="ID_Patient" />
+            </Principal>
+            <Dependent Role="PatientMedications">
+              <PropertyRef Name="ID_Patient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientPr__ID_Pa__7B5B524B">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="PatientProcedures" Type="Self.PatientProcedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="ID_Patient" />
+            </Principal>
+            <Dependent Role="PatientProcedures">
+              <PropertyRef Name="ID_Patient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientPr__ID_Pr__7C4F7684">
+          <End Role="MedicalProcedures" Type="Self.MedicalProcedures" Multiplicity="1" />
+          <End Role="PatientProcedures" Type="Self.PatientProcedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalProcedures">
+              <PropertyRef Name="ID_Procedure" />
+            </Principal>
+            <Dependent Role="PatientProcedures">
+              <PropertyRef Name="ID_Procedure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Patients__ID_Dep__72C60C4A">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID_Department" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="ID_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Patients__ID_Rol__73BA3083">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__ID_Depart__6B24EA82">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID_Department" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="ID_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__ID_Positi__6C190EBB">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="ID_Position" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="ID_Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__ID_Role__6D0D32F4">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище HospitalDOroganModelContainer">
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diagnoses" EntityType="Self.Diagnoses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalProcedures" EntityType="Self.MedicalProcedures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medications" EntityType="Self.Medications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientDiagnoses" EntityType="Self.PatientDiagnoses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientMedications" EntityType="Self.PatientMedications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientProcedures" EntityType="Self.PatientProcedures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Diagnoses__ID_De__6FE99F9F" Association="Self.FK__Diagnoses__ID_De__6FE99F9F">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Diagnoses" EntitySet="Diagnoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MedicalPr__ID_St__76969D2E" Association="Self.FK__MedicalPr__ID_St__76969D2E">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="MedicalProcedures" EntitySet="MedicalProcedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientDi__ID_Di__00200768" Association="Self.FK__PatientDi__ID_Di__00200768">
+            <End Role="Diagnoses" EntitySet="Diagnoses" />
+            <End Role="PatientDiagnoses" EntitySet="PatientDiagnoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientDi__ID_Pa__7F2BE32F" Association="Self.FK__PatientDi__ID_Pa__7F2BE32F">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="PatientDiagnoses" EntitySet="PatientDiagnoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientMe__ID_Me__03F0984C" Association="Self.FK__PatientMe__ID_Me__03F0984C">
+            <End Role="Medications" EntitySet="Medications" />
+            <End Role="PatientMedications" EntitySet="PatientMedications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientMe__ID_Pa__02FC7413" Association="Self.FK__PatientMe__ID_Pa__02FC7413">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="PatientMedications" EntitySet="PatientMedications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientPr__ID_Pa__7B5B524B" Association="Self.FK__PatientPr__ID_Pa__7B5B524B">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="PatientProcedures" EntitySet="PatientProcedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientPr__ID_Pr__7C4F7684" Association="Self.FK__PatientPr__ID_Pr__7C4F7684">
+            <End Role="MedicalProcedures" EntitySet="MedicalProcedures" />
+            <End Role="PatientProcedures" EntitySet="PatientProcedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Patients__ID_Dep__72C60C4A" Association="Self.FK__Patients__ID_Dep__72C60C4A">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Patients__ID_Rol__73BA3083" Association="Self.FK__Patients__ID_Rol__73BA3083">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__ID_Depart__6B24EA82" Association="Self.FK__Staff__ID_Depart__6B24EA82">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__ID_Positi__6C190EBB" Association="Self.FK__Staff__ID_Positi__6C190EBB">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__ID_Role__6D0D32F4" Association="Self.FK__Staff__ID_Role__6D0D32F4">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HospitalDOroganModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="ID_Department" />
+          </Key>
+          <Property Name="ID_Department" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Diagnoses" Relationship="Self.FK__Diagnoses__ID_De__6FE99F9F" FromRole="Departments" ToRole="Diagnoses" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__ID_Dep__72C60C4A" FromRole="Departments" ToRole="Patients" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__Staff__ID_Depart__6B24EA82" FromRole="Departments" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Diagnoses">
+          <Key>
+            <PropertyRef Name="ID_Diagnosis" />
+          </Key>
+          <Property Name="ID_Diagnosis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_Department" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK__Diagnoses__ID_De__6FE99F9F" FromRole="Diagnoses" ToRole="Departments" />
+          <NavigationProperty Name="PatientDiagnoses" Relationship="Self.FK__PatientDi__ID_Di__00200768" FromRole="Diagnoses" ToRole="PatientDiagnoses" />
+        </EntityType>
+        <EntityType Name="MedicalProcedures">
+          <Key>
+            <PropertyRef Name="ID_Procedure" />
+          </Key>
+          <Property Name="ID_Procedure" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_Staff" Type="Int32" Nullable="false" />
+          <Property Name="Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__MedicalPr__ID_St__76969D2E" FromRole="MedicalProcedures" ToRole="Staff" />
+          <NavigationProperty Name="PatientProcedures" Relationship="Self.FK__PatientPr__ID_Pr__7C4F7684" FromRole="MedicalProcedures" ToRole="PatientProcedures" />
+        </EntityType>
+        <EntityType Name="Medications">
+          <Key>
+            <PropertyRef Name="ID_Medication" />
+          </Key>
+          <Property Name="ID_Medication" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DailyDosage" Type="Int32" Nullable="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PatientMedications" Relationship="Self.FK__PatientMe__ID_Me__03F0984C" FromRole="Medications" ToRole="PatientMedications" />
+        </EntityType>
+        <EntityType Name="PatientDiagnoses">
+          <Key>
+            <PropertyRef Name="ID_PatientDiagnosis" />
+          </Key>
+          <Property Name="ID_PatientDiagnosis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Patient" Type="Int32" Nullable="false" />
+          <Property Name="ID_Diagnosis" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Diagnoses" Relationship="Self.FK__PatientDi__ID_Di__00200768" FromRole="PatientDiagnoses" ToRole="Diagnoses" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__PatientDi__ID_Pa__7F2BE32F" FromRole="PatientDiagnoses" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="PatientMedications">
+          <Key>
+            <PropertyRef Name="ID_PatientMedication" />
+          </Key>
+          <Property Name="ID_PatientMedication" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Patient" Type="Int32" Nullable="false" />
+          <Property Name="ID_Medication" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Medications" Relationship="Self.FK__PatientMe__ID_Me__03F0984C" FromRole="PatientMedications" ToRole="Medications" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__PatientMe__ID_Pa__02FC7413" FromRole="PatientMedications" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="PatientProcedures">
+          <Key>
+            <PropertyRef Name="ID_PatientProcedure" />
+          </Key>
+          <Property Name="ID_PatientProcedure" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Patient" Type="Int32" Nullable="false" />
+          <Property Name="ID_Procedure" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MedicalProcedures" Relationship="Self.FK__PatientPr__ID_Pr__7C4F7684" FromRole="PatientProcedures" ToRole="MedicalProcedures" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__PatientPr__ID_Pa__7B5B524B" FromRole="PatientProcedures" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="ID_Patient" />
+          </Key>
+          <Property Name="ID_Patient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_Department" Type="Int32" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AdmissionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DischargeDate" Type="DateTime" Precision="0" />
+          <Property Name="ID_Role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK__Patients__ID_Dep__72C60C4A" FromRole="Patients" ToRole="Departments" />
+          <NavigationProperty Name="PatientDiagnoses" Relationship="Self.FK__PatientDi__ID_Pa__7F2BE32F" FromRole="Patients" ToRole="PatientDiagnoses" />
+          <NavigationProperty Name="PatientMedications" Relationship="Self.FK__PatientMe__ID_Pa__02FC7413" FromRole="Patients" ToRole="PatientMedications" />
+          <NavigationProperty Name="PatientProcedures" Relationship="Self.FK__PatientPr__ID_Pa__7B5B524B" FromRole="Patients" ToRole="PatientProcedures" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Patients__ID_Rol__73BA3083" FromRole="Patients" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="ID_Position" />
+          </Key>
+          <Property Name="ID_Position" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salary" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__Staff__ID_Positi__6C190EBB" FromRole="Positions" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__ID_Rol__73BA3083" FromRole="Roles" ToRole="Patients" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__Staff__ID_Role__6D0D32F4" FromRole="Roles" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID_Staff" />
+          </Key>
+          <Property Name="ID_Staff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_Department" Type="Int32" Nullable="false" />
+          <Property Name="ID_Position" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK__Staff__ID_Depart__6B24EA82" FromRole="Staff" ToRole="Departments" />
+          <NavigationProperty Name="MedicalProcedures" Relationship="Self.FK__MedicalPr__ID_St__76969D2E" FromRole="Staff" ToRole="MedicalProcedures" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK__Staff__ID_Positi__6C190EBB" FromRole="Staff" ToRole="Positions" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Staff__ID_Role__6D0D32F4" FromRole="Staff" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK__Diagnoses__ID_De__6FE99F9F">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Diagnoses" Type="Self.Diagnoses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID_Department" />
+            </Principal>
+            <Dependent Role="Diagnoses">
+              <PropertyRef Name="ID_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Patients__ID_Dep__72C60C4A">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID_Department" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="ID_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__ID_Depart__6B24EA82">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID_Department" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="ID_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientDi__ID_Di__00200768">
+          <End Role="Diagnoses" Type="Self.Diagnoses" Multiplicity="1" />
+          <End Role="PatientDiagnoses" Type="Self.PatientDiagnoses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnoses">
+              <PropertyRef Name="ID_Diagnosis" />
+            </Principal>
+            <Dependent Role="PatientDiagnoses">
+              <PropertyRef Name="ID_Diagnosis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MedicalPr__ID_St__76969D2E">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="MedicalProcedures" Type="Self.MedicalProcedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="MedicalProcedures">
+              <PropertyRef Name="ID_Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientPr__ID_Pr__7C4F7684">
+          <End Role="MedicalProcedures" Type="Self.MedicalProcedures" Multiplicity="1" />
+          <End Role="PatientProcedures" Type="Self.PatientProcedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalProcedures">
+              <PropertyRef Name="ID_Procedure" />
+            </Principal>
+            <Dependent Role="PatientProcedures">
+              <PropertyRef Name="ID_Procedure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientMe__ID_Me__03F0984C">
+          <End Role="Medications" Type="Self.Medications" Multiplicity="1" />
+          <End Role="PatientMedications" Type="Self.PatientMedications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medications">
+              <PropertyRef Name="ID_Medication" />
+            </Principal>
+            <Dependent Role="PatientMedications">
+              <PropertyRef Name="ID_Medication" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientDi__ID_Pa__7F2BE32F">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="PatientDiagnoses" Type="Self.PatientDiagnoses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="ID_Patient" />
+            </Principal>
+            <Dependent Role="PatientDiagnoses">
+              <PropertyRef Name="ID_Patient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientMe__ID_Pa__02FC7413">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="PatientMedications" Type="Self.PatientMedications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="ID_Patient" />
+            </Principal>
+            <Dependent Role="PatientMedications">
+              <PropertyRef Name="ID_Patient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientPr__ID_Pa__7B5B524B">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="PatientProcedures" Type="Self.PatientProcedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="ID_Patient" />
+            </Principal>
+            <Dependent Role="PatientProcedures">
+              <PropertyRef Name="ID_Patient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Patients__ID_Rol__73BA3083">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__ID_Positi__6C190EBB">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="ID_Position" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="ID_Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__ID_Role__6D0D32F4">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departments" EntityType="Self.Departments" />
+          <EntitySet Name="Diagnoses" EntityType="Self.Diagnoses" />
+          <EntitySet Name="MedicalProcedures" EntityType="Self.MedicalProcedures" />
+          <EntitySet Name="Medications" EntityType="Self.Medications" />
+          <EntitySet Name="PatientDiagnoses" EntityType="Self.PatientDiagnoses" />
+          <EntitySet Name="PatientMedications" EntityType="Self.PatientMedications" />
+          <EntitySet Name="PatientProcedures" EntityType="Self.PatientProcedures" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <AssociationSet Name="FK__Diagnoses__ID_De__6FE99F9F" Association="Self.FK__Diagnoses__ID_De__6FE99F9F">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Diagnoses" EntitySet="Diagnoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Patients__ID_Dep__72C60C4A" Association="Self.FK__Patients__ID_Dep__72C60C4A">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__ID_Depart__6B24EA82" Association="Self.FK__Staff__ID_Depart__6B24EA82">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientDi__ID_Di__00200768" Association="Self.FK__PatientDi__ID_Di__00200768">
+            <End Role="Diagnoses" EntitySet="Diagnoses" />
+            <End Role="PatientDiagnoses" EntitySet="PatientDiagnoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MedicalPr__ID_St__76969D2E" Association="Self.FK__MedicalPr__ID_St__76969D2E">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="MedicalProcedures" EntitySet="MedicalProcedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientPr__ID_Pr__7C4F7684" Association="Self.FK__PatientPr__ID_Pr__7C4F7684">
+            <End Role="MedicalProcedures" EntitySet="MedicalProcedures" />
+            <End Role="PatientProcedures" EntitySet="PatientProcedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientMe__ID_Me__03F0984C" Association="Self.FK__PatientMe__ID_Me__03F0984C">
+            <End Role="Medications" EntitySet="Medications" />
+            <End Role="PatientMedications" EntitySet="PatientMedications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientDi__ID_Pa__7F2BE32F" Association="Self.FK__PatientDi__ID_Pa__7F2BE32F">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="PatientDiagnoses" EntitySet="PatientDiagnoses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientMe__ID_Pa__02FC7413" Association="Self.FK__PatientMe__ID_Pa__02FC7413">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="PatientMedications" EntitySet="PatientMedications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientPr__ID_Pa__7B5B524B" Association="Self.FK__PatientPr__ID_Pa__7B5B524B">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="PatientProcedures" EntitySet="PatientProcedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Patients__ID_Rol__73BA3083" Association="Self.FK__Patients__ID_Rol__73BA3083">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__ID_Positi__6C190EBB" Association="Self.FK__Staff__ID_Positi__6C190EBB">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__ID_Role__6D0D32F4" Association="Self.FK__Staff__ID_Role__6D0D32F4">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HospitalDOroganModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.Departments">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="ID_Department" ColumnName="ID_Department" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diagnoses">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.Diagnoses">
+              <MappingFragment StoreEntitySet="Diagnoses">
+                <ScalarProperty Name="ID_Diagnosis" ColumnName="ID_Diagnosis" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Department" ColumnName="ID_Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalProcedures">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.MedicalProcedures">
+              <MappingFragment StoreEntitySet="MedicalProcedures">
+                <ScalarProperty Name="ID_Procedure" ColumnName="ID_Procedure" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medications">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.Medications">
+              <MappingFragment StoreEntitySet="Medications">
+                <ScalarProperty Name="ID_Medication" ColumnName="ID_Medication" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DailyDosage" ColumnName="DailyDosage" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientDiagnoses">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.PatientDiagnoses">
+              <MappingFragment StoreEntitySet="PatientDiagnoses">
+                <ScalarProperty Name="ID_PatientDiagnosis" ColumnName="ID_PatientDiagnosis" />
+                <ScalarProperty Name="ID_Patient" ColumnName="ID_Patient" />
+                <ScalarProperty Name="ID_Diagnosis" ColumnName="ID_Diagnosis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientMedications">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.PatientMedications">
+              <MappingFragment StoreEntitySet="PatientMedications">
+                <ScalarProperty Name="ID_PatientMedication" ColumnName="ID_PatientMedication" />
+                <ScalarProperty Name="ID_Patient" ColumnName="ID_Patient" />
+                <ScalarProperty Name="ID_Medication" ColumnName="ID_Medication" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientProcedures">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.PatientProcedures">
+              <MappingFragment StoreEntitySet="PatientProcedures">
+                <ScalarProperty Name="ID_PatientProcedure" ColumnName="ID_PatientProcedure" />
+                <ScalarProperty Name="ID_Patient" ColumnName="ID_Patient" />
+                <ScalarProperty Name="ID_Procedure" ColumnName="ID_Procedure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.Patients">
+              <MappingFragment StoreEntitySet="Patients">
+                <ScalarProperty Name="ID_Patient" ColumnName="ID_Patient" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ID_Department" ColumnName="ID_Department" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AdmissionDate" ColumnName="AdmissionDate" />
+                <ScalarProperty Name="DischargeDate" ColumnName="DischargeDate" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.Positions">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="ID_Position" ColumnName="ID_Position" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="HospitalDOroganModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ID_Department" ColumnName="ID_Department" />
+                <ScalarProperty Name="ID_Position" ColumnName="ID_Position" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

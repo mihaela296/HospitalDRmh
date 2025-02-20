@@ -1,0 +1,8 @@
+﻿<Page x:Class="HospitalD.PatientDashboard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="PatientDashboard">
+    <Grid>
+        <TextBlock Text="Панель управления пациентом" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Page>
