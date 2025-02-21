@@ -32,6 +32,7 @@ namespace HospitalD
         public System.DateTime AdmissionDate { get; set; }
         public Nullable<System.DateTime> DischargeDate { get; set; }
         public int ID_Role { get; set; }
+        public string Password { get; set; }
     
         public virtual Departments Departments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -41,7 +42,5 @@ namespace HospitalD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientProcedures> PatientProcedures { get; set; }
         public virtual Roles Roles { get; set; }
-        public string Email { get; internal set; }
-        public string PasswordHash { get; internal set; }
     }
 }

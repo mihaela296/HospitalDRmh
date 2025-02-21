@@ -27,12 +27,12 @@ namespace HospitalD
         public string Phone { get; set; }
         public string Email { get; set; }
         public int ID_Role { get; set; }
+        public string Password { get; set; }
     
         public virtual Departments Departments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MedicalProcedures> MedicalProcedures { get; set; }
         public virtual Positions Positions { get; set; }
         public virtual Roles Roles { get; set; }
-        public string PasswordHash { get; internal set; }
     }
 }

@@ -1,25 +1,10 @@
-﻿using System;
-using System.Data.Entity;
+﻿// Создание кода T4 для модели "C:\Users\SASA\source\repos\mihaela296\HospitalDRmh\HospitalD\Model.edmx" включено. 
+// Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
+// на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
+// открыта в конструкторе.
 
-public partial class User
-{
-    public int UserId { get; set; }
-    public string FullName { get; set; }
-    public DateTime BirthDate { get; set; }
-    public string PhoneNumber { get; set; }
-    public string PassportSeries { get; set; }
-    public string PassportNumber { get; set; }
-    public string Gender { get; set; }
-    public string Username { get; set; }
-    public string Password { get; set; }
-    public string Role { get; set; }
-}
-
-public partial class ModelEntities : DbContext
-{
-    public ModelEntities() : base("name=HospitalD") 
-    {
-    }
-
-    public virtual DbSet<User> Users { get; set; }
-}
+// Если не сформированы контекст и классы сущности, возможная причина в том, что вы создали пустую модель, но
+// еще не выбрали версию Entity Framework для использования. Чтобы сформировать класс контекста и классы сущностей
+// для своей модели, откройте модель в конструкторе, щелкните правой кнопкой область конструктора и
+// выберите "Обновить модель из базы данных", "Сформировать базу данных из модели" или "Добавить элемент формирования
+// кода...".

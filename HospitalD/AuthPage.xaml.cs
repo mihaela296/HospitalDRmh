@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,32 +15,64 @@ namespace HospitalD
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new ModelEntities()) // Используйте ваш контекст, созданный в Model.edmx
+            if (string.IsNullOrWhiteSpace(usernameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(passwordBox.Password))
             {
-                // Проверка на конкретного пользователя
-                if (usernameTextBox.Text == "doroganM" && passwordBox.Password == "12345678")
+                MessageBox.Show("Введите логин и пароль!");
+                return;
+            }
+
+            string passwordHash = GetHash(passwordBox.Password);
+
+            using (var db = new Entities())
+            {
+                var user = db.Users
+                    .AsNoTracking()
+                    .FirstOrDefault(u => u.Username == usernameTextBox.Text &&
+                                         u.Password == passwordHash);
+
+                if (user == null)
                 {
-                    // Здесь можно перенаправить на главную страницу или панель администратора
-                    NavigationService.Navigate(new PatientDashboard());
+                    MessageBox.Show("Неправильный логин или пароль.");
                     return;
                 }
 
-                var user = db.Users.FirstOrDefault(u => u.Username == usernameTextBox.Text && u.Password == passwordBox.Password);
-                if (user != null)
+                // Навигация на страницу в зависимости от роли пользователя
+                Window newWindow;
+                switch (user.ID_Role)
                 {
-                    // Успешный вход
-                    NavigationService.Navigate(new UserDashboard(user));
+                    case 1:
+                        newWindow = new AdminPage(user);
+                        break;
+                    case 2:
+                        newWindow = new EmployeePage(user);
+                        break;
+                    case 3:
+                        newWindow = new PatientPage(user);
+                        break;
+                    default:
+                        MessageBox.Show("Неизвестная роль пользователя!");
+                        return;
                 }
-                else
-                {
-                    MessageBox.Show("Неправильный логин или пароль.");
-                }
+
+                newWindow.Show();
+                Application.Current.MainWindow.Close();
             }
         }
 
         private void NavigateToReg_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RegPage());
+        }
+
+        public static string GetHash(string password)
+        {
+            using (var hash = SHA1.Create())
+            {
+                return string.Concat(hash
+                    .ComputeHash(Encoding.UTF8.GetBytes(password))
+                    .Select(x => x.ToString("X2")));
+            }
         }
     }
 }

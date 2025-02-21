@@ -29,6 +29,8 @@
         <AssociationConnector Association="HospitalDOroganModel.FK__Patients__ID_Rol__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalDOroganModel.FK__Staff__ID_Positi__6C190EBB" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalDOroganModel.FK__Staff__ID_Role__6D0D32F4" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HospitalDOroganModel.Users" Width="1.5" PointX="3" PointY="12.125" />
+        <AssociationConnector Association="HospitalDOroganModel.FK__Users__ID_Role__440B1D61" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

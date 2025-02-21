@@ -19,16 +19,7 @@ namespace HospitalD
             : base("name=Entities")
         {
         }
-
-        private static Entities _context;
-
-        public static Entities GetContext()
-        {
-            if(_context == null) _context = new Entities();
-            return _context;
-        }
     
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -40,12 +31,11 @@ namespace HospitalD
         public virtual DbSet<Medications> Medications { get; set; }
         public virtual DbSet<PatientDiagnoses> PatientDiagnoses { get; set; }
         public virtual DbSet<PatientMedications> PatientMedications { get; set; }
-        
         public virtual DbSet<PatientProcedures> PatientProcedures { get; set; }
         public virtual DbSet<Patients> Patients { get; set; }
         public virtual DbSet<Positions> Positions { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
-        public object Users { get; internal set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

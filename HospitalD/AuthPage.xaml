@@ -4,7 +4,7 @@
       Title="AuthPage">
     <Grid Style="{StaticResource PageBackground}">
         <StackPanel Margin="20">
-            <TextBlock Text="Авторизация и регистрация в больницу" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Авторизация" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
             <TextBlock Text="Логин:"/>
             <TextBox x:Name="usernameTextBox" Style="{StaticResource ModernTextBox}" Margin="0,5"/>
             <TextBlock Text="Пароль:"/>
