@@ -204,20 +204,14 @@
     <Compile Include="AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EmployeePage.xaml.cs">
-      <DependentUpon>EmployeePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PatientDashboard.xaml.cs">
-      <DependentUpon>PatientDashboard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AuthPage.xaml.cs">
-      <DependentUpon>AuthPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Departments.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Diagnoses.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePage.xaml.cs">
+      <DependentUpon>EmployeePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MedicalProcedures.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -225,22 +219,32 @@
     <Compile Include="Medications.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="PatientDiagnoses.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+    <Compile Include="Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PatientMedications.cs">
+    <Compile Include="PatientDashboard.xaml.cs">
+      <DependentUpon>PatientDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AuthPage.xaml.cs">
+      <DependentUpon>AuthPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientMedicalRecord.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientPage.xaml.cs">
       <DependentUpon>PatientPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PatientProcedures.cs">
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Patients.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -309,16 +313,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -353,19 +347,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.8.2\build\Fody.targets" Condition="Exists('..\packages\Fody.6.8.2\build\Fody.targets')" />

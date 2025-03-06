@@ -17,30 +17,20 @@ namespace HospitalD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Patients()
         {
-            this.PatientDiagnoses = new HashSet<PatientDiagnoses>();
-            this.PatientMedications = new HashSet<PatientMedications>();
-            this.PatientProcedures = new HashSet<PatientProcedures>();
+            this.PatientMedicalRecord = new HashSet<PatientMedicalRecord>();
         }
     
         public int ID_Patient { get; set; }
         public string FullName { get; set; }
-        public int ID_Department { get; set; }
         public Nullable<System.DateTime> BirthDate { get; set; }
         public string Gender { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public System.DateTime AdmissionDate { get; set; }
-        public Nullable<System.DateTime> DischargeDate { get; set; }
         public int ID_Role { get; set; }
         public string Password { get; set; }
     
-        public virtual Departments Departments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PatientDiagnoses> PatientDiagnoses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PatientMedications> PatientMedications { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PatientProcedures> PatientProcedures { get; set; }
+        public virtual ICollection<PatientMedicalRecord> PatientMedicalRecord { get; set; }
         public virtual Roles Roles { get; set; }
     }
 }

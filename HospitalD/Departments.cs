@@ -18,7 +18,7 @@ namespace HospitalD
         public Departments()
         {
             this.Diagnoses = new HashSet<Diagnoses>();
-            this.Patients = new HashSet<Patients>();
+            this.PatientMedicalRecord = new HashSet<PatientMedicalRecord>();
             this.Staff = new HashSet<Staff>();
         }
     
@@ -28,7 +28,7 @@ namespace HospitalD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Diagnoses> Diagnoses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Patients> Patients { get; set; }
+        public virtual ICollection<PatientMedicalRecord> PatientMedicalRecord { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff> Staff { get; set; }
     }

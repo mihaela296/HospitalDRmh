@@ -13,13 +13,21 @@ namespace HospitalD
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class HospitalDRmEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public HospitalDRmEntities()
+            : base("name=HospitalDRmEntities")
         {
         }
-    
+
+        private static HospitalDRmEntities _context;
+
+        public static HospitalDRmEntities GetContext()
+        {
+            if (_context == null) _context = new HospitalDRmEntities();
+            return _context;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -29,9 +37,7 @@ namespace HospitalD
         public virtual DbSet<Diagnoses> Diagnoses { get; set; }
         public virtual DbSet<MedicalProcedures> MedicalProcedures { get; set; }
         public virtual DbSet<Medications> Medications { get; set; }
-        public virtual DbSet<PatientDiagnoses> PatientDiagnoses { get; set; }
-        public virtual DbSet<PatientMedications> PatientMedications { get; set; }
-        public virtual DbSet<PatientProcedures> PatientProcedures { get; set; }
+        public virtual DbSet<PatientMedicalRecord> PatientMedicalRecord { get; set; }
         public virtual DbSet<Patients> Patients { get; set; }
         public virtual DbSet<Positions> Positions { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }

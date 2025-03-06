@@ -24,7 +24,7 @@ namespace HospitalD
 
             string passwordHash = GetHash(passwordBox.Password);
 
-            using (var db = new Entities())
+            using (var db = new HospitalDRmEntities())
             {
                 var user = db.Users
                     .AsNoTracking()

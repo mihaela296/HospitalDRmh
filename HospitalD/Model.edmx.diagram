@@ -4,33 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7e84cf0dc7174cb09a597dba873dbb73" Name="Diagram1">
-        <EntityTypeShape EntityType="HospitalDOroganModel.Departments" Width="1.5" PointX="5.125" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.Diagnoses" Width="1.5" PointX="3.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.MedicalProcedures" Width="1.5" PointX="9" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.Medications" Width="1.5" PointX="10.625" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.PatientDiagnoses" Width="1.5" PointX="0.625" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.PatientMedications" Width="1.5" PointX="7.375" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.PatientProcedures" Width="1.5" PointX="11.125" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.Patients" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.Positions" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.Roles" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.Staff" Width="1.5" PointX="6.5" PointY="6.375" IsExpanded="true" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__Diagnoses__ID_De__6FE99F9F" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__Patients__ID_Dep__72C60C4A" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__Staff__ID_Depart__6B24EA82" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__PatientDi__ID_Di__00200768" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__MedicalPr__ID_St__76969D2E" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__PatientPr__ID_Pr__7C4F7684" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__PatientMe__ID_Me__03F0984C" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__PatientDi__ID_Pa__7F2BE32F" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__PatientMe__ID_Pa__02FC7413" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__PatientPr__ID_Pa__7B5B524B" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__Patients__ID_Rol__73BA3083" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__Staff__ID_Positi__6C190EBB" ManuallyRouted="false" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__Staff__ID_Role__6D0D32F4" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="HospitalDOroganModel.Users" Width="1.5" PointX="3" PointY="12.125" />
-        <AssociationConnector Association="HospitalDOroganModel.FK__Users__ID_Role__440B1D61" />
+      <Diagram DiagramId="756a1e1cdff948548eec32af247c9a09" Name="Diagram1">
+        <EntityTypeShape EntityType="HospitalDRmModel.Departments" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDRmModel.Diagnoses" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDRmModel.MedicalProcedures" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDRmModel.Medications" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDRmModel.PatientMedicalRecord" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDRmModel.Patients" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDRmModel.Positions" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDRmModel.Roles" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDRmModel.Staff" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDRmModel.Users" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <AssociationConnector Association="HospitalDRmModel.FK__Diagnoses__ID_De__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__PatientMe__ID_De__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__Staff__ID_Depart__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__PatientMe__ID_Di__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__MedicalPr__ID_St__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__PatientMe__ID_Pr__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__PatientMe__ID_Me__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__PatientMe__ID_Pa__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__Patients__ID_Rol__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__Staff__ID_Positi__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__Staff__ID_Role__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDRmModel.FK__Users__ID_Role__656C112C" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,7 +17,7 @@ namespace HospitalD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Diagnoses()
         {
-            this.PatientDiagnoses = new HashSet<PatientDiagnoses>();
+            this.PatientMedicalRecord = new HashSet<PatientMedicalRecord>();
         }
     
         public int ID_Diagnosis { get; set; }
@@ -26,6 +26,6 @@ namespace HospitalD
     
         public virtual Departments Departments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PatientDiagnoses> PatientDiagnoses { get; set; }
+        public virtual ICollection<PatientMedicalRecord> PatientMedicalRecord { get; set; }
     }
 }

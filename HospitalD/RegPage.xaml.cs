@@ -43,7 +43,7 @@ namespace HospitalD
                 return;
             }
 
-            using (var db = new Entities())
+            using (var db = new HospitalDRmEntities())
             {
                 var existingUser = db.Users
                     .AsNoTracking()
@@ -58,12 +58,10 @@ namespace HospitalD
                 var newPatient = new Patients
                 {
                     FullName = fullNameTextBox.Text,
-                    ID_Department = 1, // Пример: Отделение по умолчанию
                     BirthDate = birthDatePicker.SelectedDate ?? DateTime.Now,
                     Gender = (genderComboBox.SelectedItem as ComboBoxItem)?.Content.ToString().Substring(0, 1) ?? string.Empty,
                     Phone = phoneNumberTextBox.Text,
                     Address = addressTextBox.Text,
-                    AdmissionDate = DateTime.Now,
                     ID_Role = 3,
                     Password = GetHash(passwordRegBox.Password)
                 };
