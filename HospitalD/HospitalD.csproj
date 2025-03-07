@@ -234,9 +234,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PatientDashboard.xaml.cs">
-      <DependentUpon>PatientDashboard.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
@@ -261,9 +258,6 @@
     <Compile Include="Staff.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserDashboard.xaml.cs">
-      <DependentUpon>UserDashboard.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -272,10 +266,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PatientDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,10 +294,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceDictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
