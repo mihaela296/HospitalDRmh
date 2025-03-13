@@ -6,28 +6,19 @@
         xmlns:local="clr-namespace:HospitalD"
         mc:Ignorable="d"
         Title="AdminPage" Height="450" Width="800">
-    <Grid Style="{StaticResource PageBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <!-- Приветствие -->
-        <TextBlock Grid.Row="0" Text="Добро пожаловать в административную панель!" 
-                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                   FontSize="24" FontWeight="Bold" Foreground="DarkBlue" Margin="0,20"/>
-
-        <!-- Кнопки для перехода на другие страницы -->
-        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Content="Отделения" Style="{StaticResource CustomButtonStyle}" Click="Departments_Click"/>
-            <Button Content="Персонал" Style="{StaticResource CustomButtonStyle}" Click="Staff_Click"/>
-            <Button Content="Пациенты" Style="{StaticResource CustomButtonStyle}" Click="Patients_Click"/>
-            <Button Content="Диагнозы" Style="{StaticResource CustomButtonStyle}" Click="Diagnoses_Click"/>
-            <Button Content="Медицинские процедуры" Style="{StaticResource CustomButtonStyle}" Click="MedicalProcedures_Click" />
-            <Button Content="Лекарства" Style="{StaticResource CustomButtonStyle}" Click="Medications_Click"/>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Left" Style="{StaticResource StackPanelAdmin}">
+            <Button Content="Отделения" Style="{StaticResource MenuButtonStyle}" Click="Departments_Click"/>
+            <Button Content="Сотрудники" Style="{StaticResource MenuButtonStyle}" Click="Staff_Click"/>
+            <Button Content="Пациенты" Style="{StaticResource MenuButtonStyle}" Click="Patients_Click"/>
+            <Button Content="Диагнозы" Style="{StaticResource MenuButtonStyle}" Click="Diagnoses_Click"/>
+            <Button Content="Мед.книжки" Style="{StaticResource MenuButtonStyle}" Click="MedicalProcedures_Click"/>
+            <Button Content="Лекарства" Style="{StaticResource MenuButtonStyle}" Click="Medications_Click"/>
+            <Button Content="Выйти" Style="{StaticResource LogoutButtonStyle}" Click="Logout_Click"/>
         </StackPanel>
 
-        <!-- Фрейм для отображения других страниц -->
-        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
-    </Grid>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+    </DockPanel>
 </Window>
+

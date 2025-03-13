@@ -55,6 +55,11 @@ namespace HospitalD
         {
             MainFrame.Navigate(new MedicationsPage());
         }
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
+        }
 
     }
 }
